@@ -1,0 +1,67 @@
+profiles/*.json
+.vscode
+**/__pycache__
+lib
+log.txt
+cache/
+plugins/UFLDLaneDetection/UFLD/models/*.onnx
+plugins/Map/VisualizeRoads/Roads.json
+venv/
+app/
+run.bat
+activate.bat
+src/NVIDIA/*.dll
+*/*/__pycache__/*
+profiles/currentProfile.txt
+assets/translationCache/*
+test.py
+assets/images/wallpaper.png
+plugins/Map/GameData/*.json
+plugins/Map/Old/VisualizeRoads/Roads.json
+plugins/Map/Old/VisualizeRoads/UNPACKTHISFILE.zip
+plugins/Map/GameData/*.json
+plugins/Map/Old
+anomalousFrames
+profiles/installer_config.cfg
+godot
+
+# Ignore BG
+assets/BorderlessGaming/*
+
+# NavigationDetection
+plugins/NavigationDetection/AIModel/*
+!plugins/NavigationDetection/AIModel/index.md
+plugins/NavigationDetection/YOLOFiles/*
+!plugins/NavigationDetection/YOLOFiles/index.md
+plugins/NavigationDetection/YOLOv5_MapDetectionModel.pt
+
+# TrafficLightDetection
+plugins/TrafficLightDetection/AIModel/*
+!plugins/TrafficLightDetection/AIModel/index.md
+
+# Wiki is built by github actions, no need to have users download it constantly
+wiki/* 
+
+# NPM
+node_modules
+package-lock.json
+package.json
+
+# Ignore gource files
+gource.mp4
+gource.txt
+output
+
+# Ignore themes
+themes/*
+!themes/ExampleTheme
+!themes/ForestRed
+!themes/Forest
+
+# Ignore screenshot
+screenshot.png
+
+# Ignore rewrite folders
+logs/
+ETS2LA/
+frontend/
