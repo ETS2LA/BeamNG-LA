@@ -13,19 +13,8 @@ def UpdateChecker():
         return
     
     currentVer = variables.VERSION.split(".")
-    githubUrl = "https://raw.githubusercontent.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist/main/"
-    sourceForgeUrl = "https://sourceforge.net/p/eurotrucksimulator2-laneassist/code/ci/main/tree/"
-    try:
-        remoteVer = requests.get(githubUrl + "version.txt").text.strip().split(".")
-        remote = "github"
-    except:
-        try:
-            remoteVer = requests.get(sourceForgeUrl + "version.txt?format=raw").text.strip().split(".")
-            remote = "sourceforge"
-        except:
-            print("Failed to check for updates")
-            print("Please check your internet connection and try again later")
-            return
+    githubUrl = "https://raw.githubusercontent.com/ETS2LA/BeamNG-LA/refs/heads/main/"
+    remoteVer = requests.get(githubUrl + "version.txt").text.strip().split(".")
     if int(currentVer[0]) < int(remoteVer[0]):
         update = True
     elif int(currentVer[1]) < int(remoteVer[1]):
@@ -35,16 +24,8 @@ def UpdateChecker():
     else:
         update = False
     
-    if remote == "github":
-        url = githubUrl
-    else:
-        url = sourceForgeUrl
-    
     if update:
-        if remote == "github":
-            changelog = requests.get(url + "changelog.txt").text
-        elif remote == "sourceforge":
-            changelog = requests.get(url + "changelog.txt?format=raw").text
+        changelog = requests.get(githubUrl + "changelog.txt").text
             
         print(f"An update is available: {'.'.join(remoteVer)}")
 
