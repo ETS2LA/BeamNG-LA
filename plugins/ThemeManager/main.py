@@ -6,7 +6,7 @@ PluginInfo = PluginInformation(
     description="Allows you to select and use different themes",
     version="0.1",
     author="DylDev",
-    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static"
 )
 

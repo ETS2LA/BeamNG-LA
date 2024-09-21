@@ -12,7 +12,7 @@ PluginInfo = PluginInformation(
     description="Will post the application data to\nlocalhost:39847\nUsed for external applications.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", # = Panel
     dynamicOrder="last" # Will run the plugin before anything else in the mainloop (data will be empty)
 )

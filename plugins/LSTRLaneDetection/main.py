@@ -10,7 +10,7 @@ PluginInfo = PluginInformation(
     description="The recommended lane detection type.\nWill use the CPU to detect lanes on the image.\nMad props to the LSTR team\nfor making something this lightweight and fast!",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", # = Panel
     dynamicOrder="lane detection", # Will run the plugin before anything else in the mainloop (data will be empty)
     exclusive="LaneDetection" # Will disable the other screen capture plugins

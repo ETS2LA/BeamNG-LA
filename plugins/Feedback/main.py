@@ -14,7 +14,7 @@ PluginInfo = PluginInformation(
     description="A simple panel to send feedback to the devs.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static" # = Panel
 )
 

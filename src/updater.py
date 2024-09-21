@@ -13,7 +13,7 @@ def UpdateChecker():
         return
     
     currentVer = variables.VERSION.split(".")
-    githubUrl = "https://raw.githubusercontent.com/BNGLA/BeamNG-LA/refs/heads/main/"
+    githubUrl = "https://raw.githubusercontent.com/ETS2LA/BeamNG-LA/refs/heads/main/"
     remoteVer = requests.get(githubUrl + "version.txt").text.strip().split(".")
     if int(currentVer[0]) < int(remoteVer[0]):
         update = True
