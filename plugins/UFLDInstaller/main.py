@@ -12,7 +12,7 @@ PluginInfo = PluginInformation(
     description="Installs all files needed for UFLD",
     version="0.1",
     author="DylDev",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static" # = Panel
 )
 

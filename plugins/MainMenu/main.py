@@ -3,19 +3,16 @@ This is an example of a panel (type="static"), they will be updated if they are 
 If you need to make a plugin that is updated in the bg then check the Plugin example!
 """
 
-
 from plugins.plugin import PluginInformation
 from src.logger import print
 
 PluginInfo = PluginInformation(
-    name="MainMenu", # This needs to match the folder name under plugins (this would mean plugins\Panel\main.py)
-    # In case the plugin is not the main file (for example plugins\Panel\Panel.py) then the name would be "Panel.Panel"
-    
+    name="MainMenu",
     description="The main menu of the app.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
-    type="static" # = Panel
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
+    type="static"
 )
 
 import tkinter as tk

@@ -12,7 +12,7 @@ PluginInfo = PluginInformation(
     description="Will let you switch between themes.\nTHEMES CREATED BY rdbende!",
     version="0.1",
     author="rdbende,Tumppi066",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static" # = Panel
 )
 

@@ -10,7 +10,7 @@ PluginInfo = PluginInformation(
     description="Uses more cpu power than bettercam, but works on linux.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", # = Panel
     dynamicOrder="image capture", # Will run the plugin before anything else in the mainloop (data will be empty)
     exclusive="ScreenCapture" # Will disable the other screen capture plugins

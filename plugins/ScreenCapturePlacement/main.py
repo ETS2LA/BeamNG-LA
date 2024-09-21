@@ -12,7 +12,7 @@ PluginInfo = PluginInformation(
     description="Provides an easy way to place the screen capture\nwindow on the correct spot.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static", # = Panel
     disableLoop=True # This panel will disable all other plugins when it's open
 )

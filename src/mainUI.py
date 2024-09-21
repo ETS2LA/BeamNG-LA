@@ -150,8 +150,6 @@ def switchSelectedPlugin(pluginName:str):
         
         else: return
         
-        
-        
     # Create a new frame for the plugin in the notebook
     pluginFrame = ttk.Frame(pluginNotebook, width=width, height=height-20)
     pluginFrame.pack_propagate(0)
@@ -240,7 +238,6 @@ def drawButtons(refresh:bool=False):
             name = name[:10] + "..."
         helpers.MakeButton(customButtonFrame, name, lambda favorite=favorite: switchSelectedPlugin(favorite), 0, 0, width=11, padx=9, autoplace=True)
     
-
 prevFrame = 100
 def update(data:dict, dontOpenMenu:bool=False):
     """Update the mainUI.
@@ -260,12 +257,22 @@ def update(data:dict, dontOpenMenu:bool=False):
         fps.set(f"UI FPS: {round((frame-prevFrame)*1000)}ms ({round(1/(frame-prevFrame))}fps)")
     except: pass
     prevFrame = frame
-        
+
     try:
-        # Update the selected plugin
-        ui = UIs[pluginNotebook.index(pluginNotebook.select())]
-        if ui != None:
-            ui.update(data)
+        # Get selected tab and validate
+        selected_tab = pluginNotebook.select()
+
+        # Check if no tabs are open
+        try:
+            if pluginNotebook.index("end") == 0:
+                # Open the main menu
+                switchSelectedPlugin("plugins.MainMenu.main")
+            else:
+                ui = UIs[pluginNotebook.index(selected_tab)]
+                if ui is not None:
+                    ui.update(data)
+        except Exception as e:
+            print(e)
     except Exception as ex:
         if "'UI' object has no attribute 'update'" in str(ex):
             print("Currently open panel does not have an update method. Please add one.")
@@ -273,19 +280,11 @@ def update(data:dict, dontOpenMenu:bool=False):
             print(str(ex))
         pass
 
-    # Check if no tabs are open
-    try:
-        if pluginNotebook.index("end") == 0:
-            # Open the mainmenu
-            switchSelectedPlugin("plugins.MainMenu.main")
-    except:
-        pass
-
     try:
         root.update()
     except:
         raise Exception("The main window has been closed.", "If you closed the app this is normal.")
-    
+
 def resizeWindow(newWidth:int, newHeight:int):
     """Will resize the window to the given size.
 
@@ -325,10 +324,7 @@ def changeTheme():
     """
     print("Changing theme")
     helpers.ShowInfo(Translate("Unfortunately with the change to new themes you can no longer change the mode on the fly.\nThis functionality might return in the future."))
-    # global themeButton
-    # themeSelector.SwitchThemeType()
-    # themeButton.config(text=Translate(settings.GetSettings("User Interface", "Theme")).capitalize() + " Mode")
-    
+
 # Save the position of the window if it's closed
 def savePosition():
     """Will save the current position of the window.
@@ -385,20 +381,15 @@ def CreateRoot():
     # Query DPI Awareness (Windows 10 and 8)
     awareness = ctypes.c_int()
     errorCode = ctypes.windll.shcore.GetProcessDpiAwareness(0, ctypes.byref(awareness))
-    #print("Original DPI awareness value : " + str(awareness.value))
 
     # Set DPI Awareness  (Windows 10 and 8)
     try:
         errorCode = ctypes.windll.shcore.SetProcessDpiAwareness(wantedAwareness)
-        #print("Set DPI awareness value to " + str(wantedAwareness) + " (code " + str(errorCode) + ")")
     except:
         print("Failed to set DPI awareness value")
-        #errorCode = ctypes.windll.user32.SetProcessDPIAware()
 
     # the argument is the awareness level, which can be 0, 1 or 2:
     # for 1-to-1 pixel control I seem to need it to be non-zero (I'm using level 2)
-    
-    
     width = 800
     height = 600
 

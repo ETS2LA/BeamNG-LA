@@ -12,7 +12,7 @@ PluginInfo = PluginInformation(
     description="ExamplePlugin.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", 
     dynamicOrder="before game"
 )

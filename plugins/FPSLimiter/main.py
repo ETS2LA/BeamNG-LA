@@ -12,7 +12,7 @@ PluginInfo = PluginInformation(
     description="Will limit the FPS to the desired amount.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", # = Panel
     dynamicOrder="last" # Will run the plugin before anything else in the mainloop (data will be empty)
 )

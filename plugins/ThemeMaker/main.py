@@ -12,7 +12,7 @@ PluginInfo = PluginInformation(
     description="Let's you change the color of a theme to your liking.\nEXPERIMENTAL! - There can be themes that don't work well!\nBase theme is the forest theme.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/Tumppi066/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static" # = Panel
 )
 
