@@ -2,23 +2,6 @@
 The main file that runs the programs loop.
 '''
 
-# Uncomment for debugging (main function includes a count for how many startup took)
-# import sys
-# calls = 0
-# def trace(frame, event, arg):
-#     global calls
-#     if event == "call":
-#         filename = frame.f_code.co_filename
-#         if "Python" not in filename and "frozen" not in filename and "string" not in filename:
-#             lineno = frame.f_lineno
-#             # Here I'm printing the file and line number, 
-#             # but you can examine the frame, locals, etc too.
-#             print("%s @ %s" % (filename, lineno))
-#             calls += 1
-#     return trace
-# 
-# sys.settrace(trace)
-
 # Check if the user is using python 3.12 or over
 import sys
 if sys.version_info[0] == 3 and sys.version_info[1] >= 12:
@@ -57,7 +40,6 @@ def CheckTkWebview2InstallVersion():
 import time
 from src.logger import print
 import src.variables as variables
-
 
 def CheckAnomalousFrames():
     try:
@@ -118,7 +100,6 @@ from tkinter import messagebox
 import src.controls as controls
 import src.settings as settings
 import src.translator as translator
-import src.scsLogReader as LogReader
 from src.server import SendCrashReport, Ping
 import plugins.MSSScreenCapture.main as MSSScreenCapture
 
@@ -144,12 +125,6 @@ mainUI.CreateRoot()
 splash = helpers.SplashScreen(mainUI.root, totalSteps=4)
 splash.updateProgress(text="Initializing...", step=1)
 mainUI.root.update()
-
-try:
-    if "DXCamScreenCapture" in settings.GetSettings("Plugins", "Enabled"):
-        settings.RemoveFromList("Plugins", "Enabled", "DXCamScreenCapture")
-        settings.AddToList("Plugins", "Enabled", "BetterCamScreenCapture")
-except: pass
 
 listOfRequirementsAddedLater = ["colorama", "bettercam", "matplotlib", "pywebview", "vdf", "deep-translator", "Babel"]
 listOfRequirementsAddedLater = [i.replace("-", "_") for i in listOfRequirementsAddedLater]
@@ -190,9 +165,8 @@ if missing:
             pass
         elif "sv_ttk" in module:
             pass
-        elif "playsound2" in module:
-            os.system("pip uninstall -y playsound")
-            os.system("pip install playsound2")
+        elif "pygnentst" in module:
+            pass
         else:
             if module in versions:
                 print("installing" + " " + module + "==" + versions[module])
@@ -521,21 +495,14 @@ def CheckForONNXRuntimeChange():
 
 def CheckLastKnownVersion():
     lastVersion = settings.GetSettings("User Interface", "version")
-    if lastVersion == None:
+    if lastVersion == None or lastVersion == variables.VERSION:
         settings.UpdateSettings("User Interface", "version", variables.VERSION)
-        mainUI.switchSelectedPlugin("plugins.Changelog.main")
-        return
-    
-    if lastVersion != variables.VERSION:
-        settings.UpdateSettings("User Interface", "version", variables.VERSION)
-        mainUI.switchSelectedPlugin("plugins.Changelog.main")
-        return
+
     
 def CloseAllPlugins():
     for plugin in pluginObjects:
         plugin.onDisable()
         del plugin
-        
 
 timesLoaded = 0
 def LoadApplication():
@@ -624,36 +591,6 @@ def LoadApplication():
 
 LoadApplication()
 
-lastChecksums = {}
-def CheckForFileChanges():
-    """Will check the plugin main files for changes and reload them if they've changed."""
-    global lastChecksums
-    # Check if it's the first time running this function
-    if lastChecksums == {}:
-        for plugin in pluginNames:
-            try:
-                checksum = hashlib.md5(open(os.path.join(variables.PATH, "plugins", plugin, "main.py"), "rb").read()).hexdigest()
-                lastChecksums[plugin] = checksum
-            except:
-                pass
-        return
-    
-    # Check for changes in the plugins
-    for plugin in pluginNames:
-        try:
-            checksum = hashlib.md5(open(os.path.join(variables.PATH, "plugins", plugin, "main.py"), "rb").read()).hexdigest()
-            if checksum != lastChecksums[plugin]:
-                print(f"Detected changes in {plugin}...")
-                ReloadPluginCode()
-                RunOnEnable()
-                variables.RELOADPLUGINS = False
-                variables.RELOAD = False # Already reloaded
-                lastChecksums[plugin] = checksum
-                break
-        except:
-            pass
-      
-      
 # Check for updates
 updater.UpdateChecker()  
 
@@ -701,21 +638,6 @@ if __name__ == "__main__":
             data = controls.plugin(data)
             controlsEndTime = time.time()
             data["executionTimes"]["Control callbacks"] = controlsEndTime - controlsStartTime
-            
-            # Check for plugin changes (every second)
-            pluginChangeTime = time.time()
-            if time.time() - pluginChangeTimer > 1:
-                pluginChangeTimer = time.time()
-                CheckForFileChanges()
-            pluginChangeEndTime = time.time()
-            data["executionTimes"]["Filesystem Check"] = pluginChangeEndTime - pluginChangeTime
-            
-            # Check for log file changes
-            logCheckTime = time.time()
-            data = LogReader.plugin(data)
-            logCheckEndTime = time.time()
-            data["executionTimes"]["Log Check"] = logCheckEndTime - logCheckTime
-            
             
             try:
                 if variables.APPENDDATANEXTFRAME != None or variables.APPENDDATANEXTFRAME != [] or variables.APPENDDATANEXTFRAME != {} or variables.APPENDDATANEXTFRAME != "":
@@ -785,22 +707,6 @@ if __name__ == "__main__":
                     cv2.destroyWindow("Lane Assist")
                 except:
                     pass
-                try:
-                    cv2.destroyWindow('Traffic Light Detection - Final')
-                except:
-                    pass
-                try:
-                    cv2.destroyWindow('Traffic Light Detection - B/W')
-                except:
-                    pass
-                try:
-                    cv2.destroyWindow('Traffic Light Detection - Position Estimation')
-                except:
-                    pass
-                try:
-                    cv2.destroyWindow('TruckStats')
-                except:
-                    pass
                 
                 variables.FRAMECOUNTER += 1
                 
@@ -867,7 +773,7 @@ if __name__ == "__main__":
                 # Get the user name
                 username = os.getlogin()
                 # Send a crash report
-                SendCrashReport("Main loop crash.", exc.replace(username, "censored"))
+                SendCrashReport("BeamNG LA - Main loop crash.", exc.replace(username, "censored"))
                 if not messagebox.askretrycancel("Error", translator.Translate("The application has encountered an error in the main thread!\nPlease either retry execution or close the application (cancel)!\n\n") + exc):
                     break
                 else:
