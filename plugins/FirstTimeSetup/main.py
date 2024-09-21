@@ -5,7 +5,7 @@ PluginInfo = PluginInformation(
     description="Will help you get the app up and running!",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static",
     image="image.png",
     disablePlugins=True
@@ -37,7 +37,7 @@ def init_pygame():
     pygame.joystick.init()
 
 threading.Thread(target=init_pygame).start()
-wiki_link = "https://wiki.ets2la.com/"
+wiki_link = "https://wiki.BNGLA.com/"
 
 class UI():
     
@@ -91,7 +91,7 @@ class UI():
         def detectionselection(self):
             settings.CreateSettings("Plugins", "Enabled", ["TruckersMPLock"])
             def openwiki():
-                    webview.create_window("Lane Assist Wiki", "https://wiki.ets2la.com/faq/lanedetectiontypes")
+                    webview.create_window("Lane Assist Wiki", "https://wiki.BNGLA.com/faq/lanedetectiontypes")
                     webview.start()
             self.root.destroy()
             del self.root
@@ -391,7 +391,7 @@ class UI():
         
             helpers.MakeButton(self.root, "Previous", lambda: self.soundSettings(), 11,0)
             import webbrowser
-            helpers.MakeButton(self.root, "Open instructions", lambda: webbrowser.open("https://wiki.ets2la.com/en/LaneAssist/InGame"), 11,1)
+            helpers.MakeButton(self.root, "Open instructions", lambda: webbrowser.open("https://wiki.BNGLA.com/en/LaneAssist/InGame"), 11,1)
             self.apiNextButton = helpers.MakeButton(self.root, "Waiting for api...", lambda: self.lastPage(), 11,2, state="disabled")
         
             self.root.pack()

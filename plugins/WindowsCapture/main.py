@@ -6,7 +6,7 @@ PluginInfo = PluginInformation(
     description="Will use the windows APIs to capture the screen.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", # = Panel
     dynamicOrder="image capture", # Will run the plugin before anything else in the mainloop (data will be empty)
     exclusive="ScreenCapture" # Will disable the other screen capture plugins

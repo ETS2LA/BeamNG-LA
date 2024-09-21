@@ -1,5 +1,5 @@
 """
-This example is a part of the wiki page available here: https://wiki.ets2la.com/tutorials/plugincreation/
+This example is a part of the wiki page available here: https://wiki.BNGLA.com/tutorials/plugincreation/
 """
 
 
@@ -13,7 +13,7 @@ PluginInfo = PluginInformation(
     description="This plugin will print the game time to the console when pressing a defined keybind.\nI addition if the time is past 18:00 it will enable the lights,\nand if it's past 9:00 it will disable them.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", # = Panel
     dynamicOrder="before controller" # Will run the plugin before anything else in the mainloop (data will be empty)
 )

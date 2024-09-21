@@ -11,7 +11,7 @@ PluginInfo = PluginInformation(
     description="The main menu of the app.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
     type="static"
 )
 
@@ -57,14 +57,12 @@ class UI():
             except: pass
             
             self.root = tk.Canvas(self.master, width=1, height=1, border=0, highlightthickness=0)
-            #self.root.grid_propagate(0) # Don't fit the canvast to the widgets
-            #self.root.pack_propagate(0)
             
             # Make a label to offset the text and buttons to the center of the frame
             helpers.lastParent = self.root
             helpers.defaultAutoplaceColumn = 1
             helpers.MakeEmptyLine(self.root, 0, 1, columnspan=2, autoplace=True, fontSize=1)
-            helpers.MakeLabel(self.root, f"You are running ETS2LA version {str(variables.VERSION)}", 0, 1, columnspan=2, font=("Roboto", 18, "bold"), autoplace=True)
+            helpers.MakeLabel(self.root, f"You are running BNGLA version {str(variables.VERSION)}", 0, 1, columnspan=2, font=("Roboto", 18, "bold"), autoplace=True)
             # date text, month, date, time, year
             try:
                 updateTime = str(variables.LASTUPDATE).split(" ")
@@ -84,13 +82,15 @@ class UI():
             else: 
                 helpers.MakeEmptyLine(self.root, 0, 1, columnspan=2, autoplace=True, fontSize=3)
             
-            from plugins.Wiki.main import LoadURL
+            def LoadURL(url):
+                helpers.OpenInBrowser(url)
+
             helpers.MakeButton(self.root, "Panel Manager", lambda: mainUI.switchSelectedPlugin("plugins.PanelManager.main"), 0, 1, width=20, autoplace=True)
             helpers.MakeButton(self.root, "Plugin Manager", lambda: mainUI.switchSelectedPlugin("plugins.PluginManager.main"), 0, 2, width=20, autoplace=True)
             helpers.MakeButton(self.root, "First Time Setup", lambda: mainUI.switchSelectedPlugin("plugins.FirstTimeSetup.main"), 0, 1, width=20, style="Accent.TButton", autoplace=True)
             helpers.MakeButton(self.root, "LANGUAGE - 语言设置", lambda: mainUI.switchSelectedPlugin("plugins.DeepTranslator.main"), 0, 2, width=20, style="Accent.TButton", translate=False, autoplace=True)
             helpers.MakeButton(self.root, "Video Tutorial", lambda: LoadURL("https://www.youtube.com/watch?v=0pic0rzjvik"), 0, 1, width=20, autoplace=True, tooltip="https://www.youtube.com/watch?v=0pic0rzjvik")
-            helpers.MakeButton(self.root, "ETS2LA Wiki", lambda: LoadURL("https://wiki.ets2la.com"), 0, 2, width=20, autoplace=True, tooltip="https://wiki.ets2la.com/en/LaneAssist")
+            helpers.MakeButton(self.root, "BNGLA Wiki", lambda: LoadURL("https://wiki.BNGLA.com"), 0, 2, width=20, autoplace=True, tooltip="https://wiki.BNGLA.com/en/LaneAssist")
             helpers.MakeEmptyLine(self.root, 0, 1, columnspan=2, autoplace=True, fontSize=3)
             helpers.MakeLabel(self.root, "You can use F5 to refresh the UI and come back to this page.\n                    (as long as the app is disabled)", 0, 1, columnspan=2, autoplace=True)
             helpers.MakeLabel(self.root, "The top of the app has all your currently open tabs.\n They can be closed with the middle mouse button.\n        (or right mouse button if so configured)", 0, 1, columnspan=2, autoplace=True)

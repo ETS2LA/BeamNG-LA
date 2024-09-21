@@ -6,7 +6,7 @@ PluginInfo = PluginInformation(
     description="Will output the default values for the API.\nMainly used for development since\nETS2 can be closed.",
     version="0.1",
     author="Tumppi066",
-    url="https://github.com/ETS2LA/Euro-Truck-Simulator-2-Lane-Assist",
+    url="https://github.com/BNGLA/Euro-Truck-Simulator-2-Lane-Assist",
     type="dynamic", # = Panel
     dynamicOrder="before image capture" # Will run the plugin before anything else in the mainloop (data will be empty)
 )
