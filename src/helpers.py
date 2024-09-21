@@ -345,7 +345,7 @@ def OpenWikiPage(url:str):
     Args:
         url (str): The URL extension.
     """
-    variables.WIKI_URL = "https://wiki.BNGLA.com/" + url
+    variables.WIKI_URL = "https://wiki.ets2la.com/" + url
     mainUI.switchSelectedPlugin("plugins.Wiki.main")
 
 
